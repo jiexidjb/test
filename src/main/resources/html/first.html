@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>云南省旅居点介绍网站 | 学术论文库</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Microsoft YaHei', sans-serif;
+            background: #f5f7fb;
+            color: #1e2a3e;
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 头部 */
+        .header {
+            background: linear-gradient(135deg, #0b3b5f 0%, #1b4f6e 100%);
+            color: white;
+            padding: 1rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            position: relative;
+        }
+
+        .header-text {
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .map-jump {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 100;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .map-jump:hover {
+            transform: translateY(-5px);
+        }
+
+        .map-card {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: white;
+            backdrop-filter: blur(8px);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 0.7rem 1.2rem;
+            border-radius: 60px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            text-decoration: none;
+            color: #0b3b5f;
+            font-weight: 600;
+            border: 1px solid rgba(11, 59, 95, 0.2);
+            transition: background 0.2s;
+        }
+
+        .map-card:hover {
+            background: white;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .map-icon {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+
+        .map-card span {
+            font-size: 1rem;
+        }
+
+        .main-container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            flex: 1;
+        }
+
+        .category-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .category-btn {
+            background: #eef2f6;
+            border: none;
+            padding: 0.7rem 1.8rem;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 40px;
+            color: #2c3e50;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .category-btn:hover {
+            background: #dce4ec;
+            transform: translateY(-2px);
+        }
+
+        .category-btn.active {
+            background: #1b4f6e;
+            color: white;
+            box-shadow: 0 6px 14px rgba(27, 79, 110, 0.3);
+        }
+
+        .paper-list {
+            background: white;
+            border-radius: 28px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+            padding: 1.8rem;
+            min-height: 450px;
+            transition: all 0.2s;
+        }
+
+        .paper-ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .paper-li {
+            border-bottom: 1px solid #e9edf2;
+            transition: background 0.2s;
+            border-radius: 14px;
+        }
+
+        .paper-li:hover {
+            background: #f8fafc;
+            padding-left: 0.5rem;
+        }
+
+        .paper-link {
+            display: block;
+            padding: 1rem 0.8rem;
+            text-decoration: none;
+            color: #1e4663;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s, transform 0.1s;
+            word-break: break-word;
+        }
+
+        .paper-link:hover {
+            color: #0f6b9c;
+            text-decoration: underline;
+        }
+
+        .no-paper {
+            text-align: center;
+            padding: 3rem;
+            color: #7f8c8d;
+            font-size: 1.1rem;
+        }
+
+        .footer {
+            background: #e2e8f0;
+            text-align: center;
+            padding: 1.2rem;
+            font-size: 0.85rem;
+            color: #4a627a;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .header-text {
+                font-size: 1.3rem;
+            }
+            .main-container {
+                padding: 0 1rem;
+                margin: 1rem auto;
+            }
+            .category-btn {
+                padding: 0.5rem 1.2rem;
+                font-size: 0.85rem;
+            }
+            .paper-list {
+                padding: 1rem;
+            }
+            .paper-link {
+                font-size: 0.85rem;
+                padding: 0.8rem 0.5rem;
+            }
+            .map-card span {
+                display: none;
+            }
+            .map-card {
+                padding: 0.6rem;
+                border-radius: 50%;
+            }
+            .map-icon {
+                width: 28px;
+                height: 28px;
+            }
+        }
+
+        .hero-note {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            color: #5b7a9a;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="header-text">🏞️ 云南省旅居点 · 学术研究资源库</div>
+</div>
+
+<div class="main-container">
+    <div class="hero-note">
+        📄 精选旅居养老、信息化平台、社会保障领域核心论文
+    </div>
+
+    <div class="category-tabs">
+        <button class="category-btn active" data-category="environment">🏥 劳动与社会保障专业</button>
+        <button class="category-btn" data-category="geography">💻 信息化 + 旅居</button>
+        <button class="category-btn" data-category="politics">📡 信息平台构建</button>
+    </div>
+
+    <div class="paper-list" id="paperList">
+        <div class="no-paper">加载中...</div>
+    </div>
+</div>
+
+<div class="footer">
+    <p>© 云南省旅居点介绍网站 | 数据基于学术论文公开资源 | 助力乡村振兴与智慧养老研究</p>
+</div>
+
+<a href="index.html" class="map-jump">
+    <div class="map-card">
+        <img src="../image/test.png" alt="地图" class="map-icon" onerror="this.src='https://via.placeholder.com/32?text=🗺️'">
+        <span>🗺️ 浏览旅居地图</span>
+    </div>
+</a>
+
+<script>
+    const papersData = {
+        "environment": [
+            { "title": "共享发展理念视域下中国农村养老保障制度体系的完善——基于“社会保障制度三体系”的分析框架_丁建定.pdf", "src": "../papers/共享发展理念视域下中国农村养老保障制度体系的完善——基于“社会保障制度三体系”的分析框架_丁建定.pdf" },
+            { "title": "进一步全面深化改革__推动社会保障制度全面优化_郑功成.pdf", "src": "../papers/进一步全面深化改革__推动社会保障制度全面优化_郑功成.pdf" },
+            { "title": "困局与破局：PPP模式下我国乡村旅游助推乡村振兴研究_贾亚力.pdf", "src": "../papers/困局与破局：PPP模式下我国乡村旅游助推乡村振兴研究_贾亚力.pdf" },
+            { "title": "我国机构养老发展的困境与对策_穆光宗.pdf", "src": "../papers/我国机构养老发展的困境与对策_穆光宗.pdf" },
+            { "title": "我国机构养老发展的困境与对策_穆光宗.pdf", "src": "../papers/我国机构养老发展的困境与对策_穆光宗.pdf" },
+            { "title": "县域统筹视角下农村多层次养老服务体系建设研究_刘二鹏.pdf", "src": "../papers/县域统筹视角下农村多层次养老服务体系建设研究_刘二鹏.pdf" },
+            { "title": "新经济视角下我国旅居养老的现状与展望_史婷婷.pdf", "src": "../papers/新经济视角下我国旅居养老的现状与展望_史婷婷.pdf" },
+            { "title": "中国社会保险制度：改革实践、路径偏差与制度优化_郑功成.pdf", "src": "../papers/中国社会保险制度：改革实践、路径偏差与制度优化_郑功成.pdf" },
+            { "title": "中国养老服务产业多元化发展与资源整合策略_贾素平.pdf", "src": "../papers/中国养老服务产业多元化发展与资源整合策略_贾素平.pdf" },
+            { "title": "中国养老资源配置与服务利用协调发展的时空演化——基于机构分层分析框架_边妗伟.pdf", "src": "../papers/中国养老资源配置与服务利用协调发展的时空演化——基于机构分层分析框架_边妗伟.pdf" }
+        ],
+        "geography": [
+            { "title": "传统村落产业信息化平台框架构建——以湖北恩施细杉村为例_谢梦云.pdf", "src": "../papers/传统村落产业信息化平台框架构建——以湖北恩施细杉村为例_谢梦云.pdf" },
+            { "title": "海南省旅游局旅游资源信息化的现状调查与分析_李开沿.pdf", "src": "../papers/海南省旅游局旅游资源信息化的现状调查与分析_李开沿.pdf" },
+            { "title": "基于系统动力学的社区养老服务供应链信息共享模型_石园.pdf", "src": "../papers/基于系统动力学的社区养老服务供应链信息共享模型_石园.pdf" },
+            { "title": "旅游大数据下智慧民宿信息化平台构建研究_王家威.pdf", "src": "../papers/旅游大数据下智慧民宿信息化平台构建研究_王家威.pdf" },
+            { "title": "民族旅游小镇信息化平台建设研究——以贵州镇远小镇为例_李军.pdf", "src": "../papers/民族旅游小镇信息化平台建设研究——以贵州镇远小镇为例_李军.pdf" },
+            { "title": "浅析信息化对乡村旅游的推动与发展_李璐涵.pdf", "src": "../papers/浅析信息化对乡村旅游的推动与发展_李璐涵.pdf" },
+            { "title": "全域旅游视角下信息化旅游平台建设的几点思考_朱齐林.pdf", "src": "../papers/全域旅游视角下信息化旅游平台建设的几点思考_朱齐林.pdf" },
+            { "title": "全域旅游信息化服务系统的构建及优化——以巢湖市为例_张文静.pdf", "src": "../papers/全域旅游信息化服务系统的构建及优化——以巢湖市为例_张文静.pdf" },
+            { "title": "探究信息化对乡村旅游的推动和发展_魏欧元.pdf", "src": "../papers/探究信息化对乡村旅游的推动和发展_魏欧元.pdf" },
+            { "title": "乡村旅游信息化与区域旅游经济耦合的协调关系_李林.pdf", "src": "../papers/乡村旅游信息化与区域旅游经济耦合的协调关系_李林.pdf" }
+        ],
+        "politics": [
+            { "title": "政策影响评估.pdf", "src": "../papers/政策评估.pdf" },
+            { "title": "治理模式研究.pdf", "src": "../papers/治理研究.pdf" }
+        ]
+    };
+
+    function filterValid(papers) {
+        if (!Array.isArray(papers)) return [];
+        return papers.filter(p => p.title && p.title.trim() !== ".pdf" && p.title.trim().length > 0);
+    }
+
+    function renderPapers(category) {
+        const container = document.getElementById('paperList');
+        if (!container) return;
+
+        let papers = papersData[category] || [];
+        papers = filterValid(papers);
+
+        if (papers.length === 0) {
+            container.innerHTML = '<div class="no-paper">📭 暂无论文资料，敬请期待</div>';
+            return;
+        }
+
+        let html = '<ul class="paper-ul">';
+        papers.forEach(paper => {
+            html += `
+                <li class="paper-li">
+                    <a href="${paper.src}" target="_blank" class="paper-link">📄 ${paper.title}</a>
+                </li>
+            `;
+        });
+        html += '</ul>';
+        container.innerHTML = html;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        renderPapers('environment');
+
+        const btns = document.querySelectorAll('.category-btn');
+        btns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                btns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const category = btn.getAttribute('data-category');
+                renderPapers(category);
+            });
+        });
+    });
+</script>
+</body>
+</html>
