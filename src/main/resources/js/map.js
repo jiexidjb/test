@@ -148,7 +148,7 @@ let markers = [];
 
 // 按市级加载坐标点
 function loadCityPoints(cityCode) {
-    fetch('../../../addr.json')
+    fetch('../addr.json')
         .then(res => res.json())
         .then(addr => {
             // 清除现有标记
