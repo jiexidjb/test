@@ -32,7 +32,7 @@ L.tileLayer(`https://t{s}.tianditu.gov.cn/cva_w/wmts?SERVICE=WMTS&REQUEST=GetTil
 }).addTo(map);
 
 // 加载云南省行政边界
-fetch('data/530000_full.json')
+fetch(`data/530000_full.json`)
     .then(res => res.json())
     .then(data => {
         L.geoJSON(data, {
@@ -66,7 +66,7 @@ const cities = [
 ];
 
 cities.forEach(city => {
-    fetch('data/${city.code}_full.json')
+    fetch(`data/${city.code}_full.json`)
         .then(res => res.json())
         .then(data => {
             const layer = L.geoJSON(data, {
