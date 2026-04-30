@@ -1,0 +1,73 @@
+const papersData = {
+    "environment": [
+        { "title": "共享发展理念视域下中国农村养老保障制度体系的完善——基于“社会保障制度三体系”的分析框架_丁建定.pdf", "src": "../papers/共享发展理念视域下中国农村养老保障制度体系的完善——基于“社会保障制度三体系”的分析框架_丁建定.pdf" },
+        { "title": "进一步全面深化改革__推动社会保障制度全面优化_郑功成.pdf", "src": "../papers/进一步全面深化改革__推动社会保障制度全面优化_郑功成.pdf" },
+        { "title": "困局与破局：PPP模式下我国乡村旅游助推乡村振兴研究_贾亚力.pdf", "src": "../papers/困局与破局：PPP模式下我国乡村旅游助推乡村振兴研究_贾亚力.pdf" },
+        { "title": "我国机构养老发展的困境与对策_穆光宗.pdf", "src": "../papers/我国机构养老发展的困境与对策_穆光宗.pdf" },
+        { "title": "我国机构养老发展的困境与对策_穆光宗.pdf", "src": "../papers/我国机构养老发展的困境与对策_穆光宗.pdf" },
+        { "title": "县域统筹视角下农村多层次养老服务体系建设研究_刘二鹏.pdf", "src": "../papers/县域统筹视角下农村多层次养老服务体系建设研究_刘二鹏.pdf" },
+        { "title": "新经济视角下我国旅居养老的现状与展望_史婷婷.pdf", "src": "../papers/新经济视角下我国旅居养老的现状与展望_史婷婷.pdf" },
+        { "title": "中国社会保险制度：改革实践、路径偏差与制度优化_郑功成.pdf", "src": "../papers/中国社会保险制度：改革实践、路径偏差与制度优化_郑功成.pdf" },
+        { "title": "中国养老服务产业多元化发展与资源整合策略_贾素平.pdf", "src": "../papers/中国养老服务产业多元化发展与资源整合策略_贾素平.pdf" },
+        { "title": "中国养老资源配置与服务利用协调发展的时空演化——基于机构分层分析框架_边妗伟.pdf", "src": "../papers/中国养老资源配置与服务利用协调发展的时空演化——基于机构分层分析框架_边妗伟.pdf" }
+    ],
+    "geography": [
+        { "title": "传统村落产业信息化平台框架构建——以湖北恩施细杉村为例_谢梦云.pdf", "src": "../papers/传统村落产业信息化平台框架构建——以湖北恩施细杉村为例_谢梦云.pdf" },
+        { "title": "海南省旅游局旅游资源信息化的现状调查与分析_李开沿.pdf", "src": "../papers/海南省旅游局旅游资源信息化的现状调查与分析_李开沿.pdf" },
+        { "title": "基于系统动力学的社区养老服务供应链信息共享模型_石园.pdf", "src": "../papers/基于系统动力学的社区养老服务供应链信息共享模型_石园.pdf" },
+        { "title": "旅游大数据下智慧民宿信息化平台构建研究_王家威.pdf", "src": "../papers/旅游大数据下智慧民宿信息化平台构建研究_王家威.pdf" },
+        { "title": "民族旅游小镇信息化平台建设研究——以贵州镇远小镇为例_李军.pdf", "src": "../papers/民族旅游小镇信息化平台建设研究——以贵州镇远小镇为例_李军.pdf" },
+        { "title": "浅析信息化对乡村旅游的推动与发展_李璐涵.pdf", "src": "../papers/浅析信息化对乡村旅游的推动与发展_李璐涵.pdf" },
+        { "title": "全域旅游视角下信息化旅游平台建设的几点思考_朱齐林.pdf", "src": "../papers/全域旅游视角下信息化旅游平台建设的几点思考_朱齐林.pdf" },
+        { "title": "全域旅游信息化服务系统的构建及优化——以巢湖市为例_张文静.pdf", "src": "../papers/全域旅游信息化服务系统的构建及优化——以巢湖市为例_张文静.pdf" },
+        { "title": "探究信息化对乡村旅游的推动和发展_魏欧元.pdf", "src": "../papers/探究信息化对乡村旅游的推动和发展_魏欧元.pdf" },
+        { "title": "乡村旅游信息化与区域旅游经济耦合的协调关系_李林.pdf", "src": "../papers/乡村旅游信息化与区域旅游经济耦合的协调关系_李林.pdf" }
+    ],
+    "politics": [
+        { "title": "政策影响评估.pdf", "src": "../papers/政策评估.pdf" },
+        { "title": "治理模式研究.pdf", "src": "../papers/治理研究.pdf" }
+    ]
+};
+
+function filterValid(papers) {
+    if (!Array.isArray(papers)) return [];
+    return papers.filter(p => p.title && p.title.trim() !== ".pdf" && p.title.trim().length > 0);
+}
+
+function renderPapers(category) {
+    const container = document.getElementById('paperList');
+    if (!container) return;
+
+    let papers = papersData[category] || [];
+    papers = filterValid(papers);
+
+    if (papers.length === 0) {
+        container.innerHTML = '<div class="no-paper">📭 暂无论文资料，敬请期待</div>';
+        return;
+    }
+
+    let html = '<ul class="paper-ul">';
+    papers.forEach(paper => {
+        html += `
+                <li class="paper-li">
+                    <a href="${paper.src}" target="_blank" class="paper-link">📄 ${paper.title}</a>
+                </li>
+            `;
+    });
+    html += '</ul>';
+    container.innerHTML = html;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    renderPapers('environment');
+
+    const btns = document.querySelectorAll('.category-btn');
+    btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            btns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const category = btn.getAttribute('data-category');
+            renderPapers(category);
+        });
+    });
+});

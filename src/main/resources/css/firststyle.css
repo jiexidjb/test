@@ -4,75 +4,80 @@
     box-sizing: border-box;
 }
 
-html, body {
-    height: 100%;
-    font-family: 'Segoe UI', 'Roboto', system-ui, -apple-system, sans-serif;
-    background: #f5f7fb;
-}
-
 body {
+    font-family: 'Segoe UI', 'Roboto', 'Microsoft YaHei', sans-serif;
+    background: #f5f7fb;
+    color: #1e2a3e;
+    line-height: 1.5;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
 }
 
+/* 头部 */
 .header {
-    background: linear-gradient(135deg, #2c7da0 0%, #1f5068 100%);
+    background: linear-gradient(135deg, #0b3b5f 0%, #1b4f6e 100%);
     color: white;
-    padding: 1.2rem 2rem;
+    padding: 1rem 2rem;
     text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    position: relative;
+}
+
+.header-text {
     font-size: 1.8rem;
     font-weight: 600;
     letter-spacing: 1px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.jump {
+.map-jump {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
+    bottom: 2rem;
+    right: 2rem;
     z-index: 100;
-    text-decoration: none;
-    display: block;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.tomap {
-    background: white;
-    border-radius: 56px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    transition: all 0.25s ease;
-    cursor: pointer;
-    overflow: hidden;
+.map-jump:hover {
+    transform: translateY(-5px);
+}
+
+.map-card {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 8px 20px 8px 12px;
-    border: 1px solid rgba(44,125,160,0.3);
+    gap: 0.8rem;
+    background: white;
+    backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, 0.95);
+    padding: 0.7rem 1.2rem;
+    border-radius: 60px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    text-decoration: none;
+    color: #0b3b5f;
+    font-weight: 600;
+    border: 1px solid rgba(11, 59, 95, 0.2);
+    transition: background 0.2s;
 }
 
-.map-image {
-    width: 36px;
-    height: 36px;
+.map-card:hover {
+    background: white;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.map-icon {
+    width: 32px;
+    height: 32px;
     object-fit: contain;
 }
 
-.tomap .tooltip span {
+.map-card span {
     font-size: 1rem;
-    font-weight: 500;
-    color: #2c7da0;
 }
 
-.tomap:hover {
-    transform: scale(1.03);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-    background: #eef7fc;
-}
-
-.category-section {
-    max-width: 1100px;
-    margin: 40px auto;
-    padding: 0 24px;
-    width: 100%;
+.main-container {
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 0 2rem;
     flex: 1;
 }
 
@@ -80,127 +85,128 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 16px;
-    margin-bottom: 32px;
+    gap: 1rem;
+    margin-bottom: 2rem;
 }
 
 .category-btn {
-    background: white;
+    background: #eef2f6;
     border: none;
-    padding: 12px 28px;
+    padding: 0.7rem 1.8rem;
     font-size: 1rem;
-    font-weight: 600;
-    border-radius: 60px;
-    color: #2c7da0;
+    font-weight: 500;
+    border-radius: 40px;
+    color: #2c3e50;
     cursor: pointer;
-    transition: all 0.2s;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    border: 1px solid #dce5ec;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
 
 .category-btn:hover {
-    background: #e6f4fa;
+    background: #dce4ec;
     transform: translateY(-2px);
 }
 
 .category-btn.active {
-    background: #2c7da0;
+    background: #1b4f6e;
     color: white;
-    border-color: #2c7da0;
-    box-shadow: 0 6px 14px rgba(44,125,160,0.3);
+    box-shadow: 0 6px 14px rgba(27, 79, 110, 0.3);
 }
 
 .paper-list {
     background: white;
     border-radius: 28px;
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
-    padding: 24px 20px;
-    min-height: 400px;
-    max-height: 60vh;
-    overflow-y: auto;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+    padding: 1.8rem;
+    min-height: 450px;
+    transition: all 0.2s;
 }
 
-.paper-item,
+.paper-ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.paper-li {
+    border-bottom: 1px solid #e9edf2;
+    transition: background 0.2s;
+    border-radius: 14px;
+}
+
+.paper-li:hover {
+    background: #f8fafc;
+    padding-left: 0.5rem;
+}
+
 .paper-link {
     display: block;
-    padding: 14px 18px;
-    margin-bottom: 12px;
-    background: #f9fbfd;
-    border-radius: 20px;
+    padding: 1rem 0.8rem;
     text-decoration: none;
-    color: #1f3b4c;
+    color: #1e4663;
+    font-weight: 500;
     font-size: 0.95rem;
-    transition: all 0.2s;
-    border-left: 4px solid transparent;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+    transition: color 0.2s, transform 0.1s;
+    word-break: break-word;
 }
 
-.paper-item:hover,
 .paper-link:hover {
-    background: #eef2fa;
-    border-left-color: #2c7da0;
-    transform: translateX(4px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    color: #0f6b9c;
+    text-decoration: underline;
 }
 
 .no-paper {
     text-align: center;
-    padding: 48px 20px;
-    color: #8aa0b5;
-    font-size: 1rem;
-}
-
-.paper-list::-webkit-scrollbar {
-    width: 8px;
-}
-
-.paper-list::-webkit-scrollbar-track {
-    background: #e9ecef;
-    border-radius: 10px;
-}
-
-.paper-list::-webkit-scrollbar-thumb {
-    background: #b9cfdf;
-    border-radius: 10px;
-}
-
-.paper-list::-webkit-scrollbar-thumb:hover {
-    background: #8fb7cc;
+    padding: 3rem;
+    color: #7f8c8d;
+    font-size: 1.1rem;
 }
 
 .footer {
     background: #e2e8f0;
     text-align: center;
-    padding: 16px;
-    font-size: 0.8rem;
-    color: #5f7d9c;
-    margin-top: auto;
-    border-top: 1px solid #cbdbe0;
+    padding: 1.2rem;
+    font-size: 0.85rem;
+    color: #4a627a;
+    margin-top: 2rem;
 }
 
-@media (max-width: 760px) {
-    .header {
-        font-size: 1.2rem;
-        padding: 1rem;
+@media (max-width: 768px) {
+    .header-text {
+        font-size: 1.3rem;
+    }
+    .main-container {
+        padding: 0 1rem;
+        margin: 1rem auto;
     }
     .category-btn {
-        padding: 8px 20px;
+        padding: 0.5rem 1.2rem;
         font-size: 0.85rem;
     }
     .paper-list {
-        padding: 16px;
+        padding: 1rem;
     }
-    .paper-item, .paper-link {
-        padding: 12px 14px;
+    .paper-link {
         font-size: 0.85rem;
+        padding: 0.8rem 0.5rem;
     }
-    .tomap {
-        bottom: 20px;
-        right: 20px;
-        padding: 6px 16px;
+    .map-card span {
+        display: none;
     }
-    .map-image {
+    .map-card {
+        padding: 0.6rem;
+        border-radius: 50%;
+    }
+    .map-icon {
         width: 28px;
         height: 28px;
     }
+}
+
+.hero-note {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    color: #5b7a9a;
 }

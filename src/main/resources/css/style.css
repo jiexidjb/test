@@ -6,136 +6,131 @@
 
 body, html {
     height: 100%;
-    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-    background-color: #eef2f5;
+    font-family: 'Segoe UI', 'Roboto', 'Microsoft YaHei', sans-serif;
+    background: #eef2f6;
 }
 
 .header {
-    height: 70px;
-    background: linear-gradient(135deg, #2c7da0 0%, #1f5068 100%);
+    background: linear-gradient(135deg, #0b3b5f 0%, #1b4f6e 100%);
     color: white;
+    padding: 0.8rem 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 30px;
-    font-size: 1.6rem;
-    font-weight: 600;
-    letter-spacing: 1px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 10;
 }
 
-.header-left {
-    background: rgba(255,255,255,0.2);
-    padding: 8px 16px;
-    border-radius: 40px;
-    transition: background 0.2s;
-    font-size: 1rem;
-    font-weight: normal;
-}
-
-.header-left:hover {
-    background: rgba(255,255,255,0.35);
-}
-
-.header-left a {
-    color: white;
+.jump {
     text-decoration: none;
+    color: white;
+    background: rgba(255,255,255,0.15);
+    padding: 0.5rem 1.2rem;
+    border-radius: 40px;
+    backdrop-filter: blur(4px);
+    transition: all 0.2s ease;
+}
+
+.jump:hover {
+    background: rgba(255,255,255,0.3);
+    transform: translateY(-2px);
 }
 
 .header-text {
-    flex: 1;
-    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
 #map {
-    height: calc(100vh - 70px);
+    height: calc(100% - 70px);
     width: 100%;
     border-radius: 24px 24px 0 0;
     box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
-    margin-top: 4px;
+    transition: all 0.3s;
     z-index: 1;
 }
 
-.custom-popup .leaflet-popup-content-wrapper {
-    border-radius: 20px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-    background: #ffffffdd;
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(255,255,255,0.6);
+.back-to-papers {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 1000;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.custom-popup .leaflet-popup-content {
-    margin: 0;
-    width: 280px !important;
+.back-to-papers:hover {
+    transform: translateY(-5px);
 }
 
-.company-card {
-    padding: 16px;
-    text-align: center;
-}
-
-.company-logo {
-    width: 100%;
-    height: 130px;
-    object-fit: cover;
-    border-radius: 16px;
-    background: #f0f2f5;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-}
-
-.company-name {
-    font-size: 1.2rem;
-    font-weight: 700;
-    margin: 12px 0 6px;
-    color: #1e3a5f;
-}
-
-.company-address {
-    font-size: 0.85rem;
-    color: #4a627a;
-    margin: 8px 0;
-    line-height: 1.4;
-}
-
-.company-card a {
-    display: inline-block;
-    margin-top: 8px;
-    padding: 6px 16px;
-    background: #2c7da0;
-    color: white;
-    border-radius: 40px;
+.paper-card {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    padding: 0.7rem 1.3rem;
+    border-radius: 60px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     text-decoration: none;
-    font-size: 0.8rem;
+    color: #0b3b5f;
+    font-weight: 600;
+    border: 1px solid rgba(11, 59, 95, 0.2);
     transition: background 0.2s;
 }
 
-.company-card a:hover {
-    background: #1f5e7a;
+.paper-card:hover {
+    background: white;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
 }
 
-.city-tooltip {
-    font-size: 14px;
-    font-weight: bold;
-    background: rgba(0,0,0,0.7);
-    color: white;
-    padding: 4px 10px;
-    border-radius: 20px;
-    white-space: nowrap;
+.paper-icon {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
+.paper-card span {
+    font-size: 0.95rem;
+}
+
+.leaflet-control-zoom a {
+    background: white !important;
+    color: #1b4f6e !important;
+    border-radius: 8px !important;
+    transition: all 0.2s;
+}
+
+.leaflet-control-zoom a:hover {
+    background: #eef2f6 !important;
 }
 
 @media (max-width: 768px) {
     .header {
-        padding: 0 16px;
-        font-size: 1.2rem;
+        padding: 0.6rem 1rem;
     }
-    .header-left {
+    .header-text {
+        font-size: 1.1rem;
+    }
+    .jump {
+        padding: 0.3rem 0.9rem;
         font-size: 0.8rem;
-        padding: 4px 12px;
     }
-    .company-card {
-        padding: 12px;
+    .paper-card span {
+        display: none;
     }
-    .company-name {
-        font-size: 1rem;
+    .paper-card {
+        padding: 0.6rem;
+        border-radius: 50%;
+    }
+    .paper-icon {
+        width: 28px;
+        height: 28px;
+    }
+    #map {
+        height: calc(100% - 60px);
+        border-radius: 16px 16px 0 0;
     }
 }
