@@ -495,5 +495,13 @@
     "logo": "../image/61.jpg",
     "lat":25.23,
     "lng":100.41
+  },
+  {
+    "name": "和演技老巢",
+    "addr": "我不告诉你......",
+    "url": "https://hotels.ctrip.com/hotels/131706945.html?cityid=21141#ctm_ref=www_hp_bs_lst",
+    "logo": "../image/hyj.jpg",
+    "lat":103.80,
+    "lng":25.50
   }
   ]
