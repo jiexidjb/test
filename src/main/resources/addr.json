@@ -503,5 +503,109 @@
     "logo": "../image/hyj.jpg",
     "lat":25.50,
     "lng":103.80
+  },
+  {
+    "name": "璞悦·柏湾黑温泉民宿",
+    "addr": "云南昌宁柯街社区村西483米",
+    "url": "https://hotels.ctrip.com/hotels/122358404.html?cityid=21264",
+    "logo": "../image/62.jpg",
+    "lat":24.88,
+    "lng":99.44
+  },
+  {
+    "name": "半山里民宿",
+    "addr": "云南大关翠华镇大关妇幼保健院南约130米",
+    "url": "https://hotels.ctrip.com/hotels/132168154.html?cityid=2309#ctm_ref=www_hp_bs_lst",
+    "logo": "../image/63.jpg",
+    "lat":25.04,
+    "lng":98.53
+  },
+  {
+    "name": "兰庭·山禾悦丨Theet&Clouds.茶文化四合院民宿（书院小区店）",
+    "addr": "云南凤庆龙泉社区福广路124号",
+    "url": "https://hotels.ctrip.com/hotels/113586745.html?cityid=21808#ctm_ref=www_hp_bs_lst",
+    "logo": "../image/64.jpg",
+    "lat":24.59,
+    "lng":99.92
+  },
+  {
+    "name": "朵朵民宿",
+    "addr": "云南景东锦屏镇凌云路123号4楼",
+    "url": "https://hotels.ctrip.com/hotels/130471485.html?cityid=20829#ctm_ref=www_hp_bs_lst",
+    "logo": "../image/65.jpg",
+    "lat":24.45,
+    "lng":100.86
+  },
+  {
+    "name": "薇风里民宿",
+    "addr": "云南保山隆阳区文华路启迪科技城21栋3号",
+    "url": "https://hotels.ctrip.com/hotels/133341108.html?cityid=197#ctm_ref=www_hp_bs_lst",
+    "logo": "../image/66.jpg",
+    "lat":25.13,
+    "lng":99.21
+  },
+  {
+    "name": "故里民宿（新街镇店）",
+    "addr": "云南鲁甸新街镇甜星儿童娱乐园东70米",
+    "url": "https://hotels.ctrip.com/hotels/124224851.html?cityid=21218#ctm_ref=www_hp_bs_lst",
+    "logo": "../image/67.jpg",
+    "lat":27.43,
+    "lng":103.45
+  },
+  {
+    "name": "云尚居民宿",
+    "addr": "云南屏边玉屏镇秀河线苗医回春堂西南方向约40米",
+    "url": "https://hotels.ctrip.com/hotels/125830802.html?cityid=21876",
+    "logo": "../image/68.jpg",
+    "lat":23.01,
+    "lng":103.66
+  },
+  {
+    "name": "腾冲迎曦暖墅庭院民宿",
+    "addr": "云南腾冲腾越街道砚湖社区居民委员会华严路北延长线田心村402号",
+    "url": "https://hotels.ctrip.com/hotels/133684234.html?cityid=1819#ctm_ref=www_hp_bs_lst",
+    "logo": "../image/69.jpg",
+    "lat":25.04,
+    "lng":98.52
+  },
+  {
+    "name": "客中初夏民宿",
+    "addr": "四川叙永分水镇分水村七社40号",
+    "url": "https://hotels.ctrip.com/hotels/123327290.html?cityid=21719#ctm_ref=www_hp_bs_lst",
+    "logo": "../image/70.jpg",
+    "lat":27.89,
+    "lng":105.28
+  },
+  {
+    "name": "永仁外普拉山涧民宿",
+    "addr": "云南永仁外普拉村二组38号",
+    "url": "https://hotels.ctrip.com/hotels/128915317.html?cityid=21751",
+    "logo": "../image/71.jpg",
+    "lat":25.91,
+    "lng":101.48
+  },
+  {
+    "name": "时年云民宿（永胜凤凰公园店）",
+    "addr": "云南永胜永北镇凤鸣村委会凤鸣路59号",
+    "url": "https://hotels.ctrip.com/hotels/97503100.html?cityid=2788",
+    "logo": "../image/72.jpg",
+    "lat":26.68,
+    "lng":100.76
+  },
+  {
+    "name": "云南元谋元马镇凤凰山云尚别墅18栋",
+    "addr": "元谋人世界公园云尚18号民宿",
+    "url": "https://hotels.ctrip.com/hotels/108228970.html?cityid=20960#ctm_ref=www_hp_bs_lst",
+    "logo": "../image/73.jpg",
+    "lat":25.72,
+    "lng":101.84
+  },
+  {
+    "name": "镇雄湖畔民宿",
+    "addr": "云南镇雄旧府街道办事处高山村民委员会乌峰街道兴康北路民兴佳园A区5栋1单元702",
+    "url": "https://hotels.ctrip.com/hotels/132701676.html?cityid=21313",
+    "logo": "../image/74.jpg",
+    "lat":27.40,
+    "lng":104.87
   }
-  ]
+]
