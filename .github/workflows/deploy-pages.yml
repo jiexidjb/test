@@ -31,9 +31,9 @@ jobs:
         run: npm ci
 
       - name: Build
-        # 注入仓库子路径，产物资源引用 /<repo>/ 前缀
-        env:
-          VITE_BASE: /${{ github.event.repository.name }}/
+        # 不再注入 VITE_BASE：github.event.repository.name 在 workflow_dispatch 下为空，
+        # 会产生 VITE_BASE=// 导致产物引用 //assets/xxx.js（协议相对 URL）而白屏。
+        # vite.config.js 默认使用相对路径 './'，子目录部署同样正确。
         run: npm run build
 
       - name: SPA fallback
