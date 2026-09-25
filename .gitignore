@@ -34,5 +34,11 @@ build/
 ### VS Code ###
 .vscode/
 
+### Node ###
+node_modules/
+/dist/
+.vite/
+*.local
+
 ### Mac OS ###
 .DS_Store
