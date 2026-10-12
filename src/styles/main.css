@@ -338,6 +338,18 @@ a {
   display: none;
 }
 
+.sidebar__status {
+  flex-shrink: 0;
+  font-size: 11.5px;
+  color: var(--muted);
+}
+
+/* 边界数据没就绪前点击州市是无效的，这里显式禁用并给出提示 */
+.sidebar--loading .sidebar__body {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 .sidebar__body {
   flex: 1;
   min-height: 0;

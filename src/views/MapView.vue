@@ -39,7 +39,7 @@ onMounted(() => init())
 
 <template>
   <div class="map-view" :class="{ 'map-view--mini': props.mini }">
-    <aside class="sidebar" :class="{ 'sidebar--open': sidebarOpen }">
+    <aside class="sidebar" :class="{ 'sidebar--open': sidebarOpen, 'sidebar--loading': loading }">
       <div
         class="sidebar__head"
         role="button"
@@ -52,7 +52,8 @@ onMounted(() => init())
           <h2>州市导览</h2>
           <p>点击州市查看当地旅居资源</p>
         </div>
-        <span class="sidebar__chevron" aria-hidden="true">▾</span>
+        <span v-if="loading" class="sidebar__status">数据加载中…</span>
+        <span v-else class="sidebar__chevron" aria-hidden="true">▾</span>
       </div>
 
       <div class="sidebar__body">

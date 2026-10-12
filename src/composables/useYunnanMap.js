@@ -1,6 +1,6 @@
 import { onBeforeUnmount, ref, shallowRef } from 'vue'
 import L from 'leaflet'
-import { CITIES, CITY_ZOOM, YUNNAN_BOUNDS, YUNNAN_CENTER, YUNNAN_ZOOM } from '../data/cities'
+import { CITIES, CITY_MAX_ZOOM, CITY_MIN_ZOOM, YUNNAN_BOUNDS, YUNNAN_CENTER, YUNNAN_ZOOM } from '../data/cities'
 import { pointInGeoJSON } from '../utils/geo'
 
 const asset = (p) => `${import.meta.env.BASE_URL}${p}`.replace(/\/{2,}/g, '/')
@@ -48,6 +48,12 @@ export function useYunnanMap() {
   let allPlaces = []
   let resizeObserver = null
 
+  // 内边距按容器尺寸自适应：小地图（缩到左上角时）不能用固定 48px，否则算出来的缩放过小
+  function fitPadding(m) {
+    const size = m.getSize()
+    return L.point(Math.min(48, size.x * 0.1), Math.min(48, size.y * 0.1))
+  }
+
   async function loadJson(path) {
     const res = await fetch(asset(path))
     if (!res.ok) throw new Error(`${path} ${res.status}`)
@@ -58,7 +64,7 @@ export function useYunnanMap() {
     const m = L.map(mapEl.value, {
       center: YUNNAN_CENTER,
       zoom: YUNNAN_ZOOM,
-      minZoom: 6,
+      minZoom: 5,
       maxZoom: 17,
       zoomControl: false,
       maxBounds: L.latLngBounds(YUNNAN_BOUNDS),
@@ -169,7 +175,12 @@ export function useYunnanMap() {
     visiblePlaces.value = places
 
     const bounds = entry.layer.getBounds()
-    if (bounds.isValid()) m.flyToBounds(bounds, { padding: [48, 48], maxZoom: CITY_ZOOM, duration: 0.7 })
+    if (!bounds.isValid()) return
+    // 以边界中心为目标，缩放到「刚好填满」并夹到 [CITY_MIN_ZOOM, CITY_MAX_ZOOM]
+    // 用 flyTo(中心) 而不是 flyToBounds，保证州市一定居中（不被 maxBounds 拉偏）
+    const fitZoom = m.getBoundsZoom(bounds, false, fitPadding(m))
+    const zoom = Math.min(Math.max(fitZoom, CITY_MIN_ZOOM), CITY_MAX_ZOOM)
+    m.flyTo(bounds.getCenter(), zoom, { duration: 0.7 })
   }
 
   function focusPlace(place) {
@@ -188,7 +199,13 @@ export function useYunnanMap() {
     cityLayers.forEach(({ layer }) => layer.setStyle({ weight: 1.4, color: '#0e7490', fillOpacity: 0.06 }))
     renderMarkers(allPlaces)
     visiblePlaces.value = allPlaces
-    m.flyTo(YUNNAN_CENTER, YUNNAN_ZOOM, { duration: 0.6 })
+
+    const province = boundaryLayer?.getBounds()
+    if (province?.isValid()) {
+      m.flyToBounds(province, { padding: fitPadding(m), maxZoom: YUNNAN_ZOOM, duration: 0.6 })
+    } else {
+      m.flyTo(YUNNAN_CENTER, YUNNAN_ZOOM, { duration: 0.6 })
+    }
   }
 
   onBeforeUnmount(() => {
