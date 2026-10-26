@@ -1,9 +1,9 @@
 // 学术论文资源：src 相对 public 目录，构建后即为站点根路径
 // 注意：这里的每一条都必须与 public/papers 下的真实文件一一对应，否则点击会 404
 export const PAPER_CATEGORIES = [
-  { key: 'social', label: '劳动与社会保障', icon: '🏥', desc: '养老保障、农村养老与乡村振兴相关研究' },
-  { key: 'infotech', label: '信息化 + 旅居', icon: '💻', desc: '旅游信息化、智慧民宿与养老服务信息共享' },
-  { key: 'platform', label: '信息平台构建', icon: '📡', desc: '平台架构、系统动力学与评估方法' }
+  { key: 'social', label: '劳动与社会保障', desc: '养老保障、农村养老与乡村振兴相关研究' },
+  { key: 'infotech', label: '信息化 + 旅居', desc: '旅游信息化、智慧民宿与养老服务信息共享' },
+  { key: 'platform', label: '信息平台构建', desc: '平台架构、系统动力学与评估方法' }
 ]
 
 export const PAPERS = {

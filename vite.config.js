@@ -10,8 +10,10 @@ export default defineConfig({
   base,
   plugins: [vue()],
   server: {
+    // 监听 0.0.0.0：本机 localhost 和手机同一局域网都能访问
     host: true,
-    port: 5173
+    port: 5173,
+    strictPort: false
   },
   build: {
     outDir: 'dist',
